@@ -17,6 +17,4 @@ for _ in range(T):
                     print(str(h) + '0' + str(w))
                 else:
                     print(str(h) + str(w))
-        
 
-    
