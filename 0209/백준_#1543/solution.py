@@ -17,4 +17,8 @@ while len(docs) > length-1:
         docs.pop(0)
 print(cnt)
 
+# babab
+# aba
+# aba -> babab -> abab
+
 
