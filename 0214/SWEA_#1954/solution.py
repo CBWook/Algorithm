@@ -17,6 +17,8 @@ for _ in range(T):
     for j in range(100):
         sum = 0
         for i in range(100):
+
+
             sum += arr[i][j]
         if max_num < sum:
             max_num = sum
