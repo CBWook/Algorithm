@@ -22,9 +22,9 @@ for test_case in range(1, T+1):
         j, i = map(int, input().split())
         arr[i][j] = 1
     cnt = 0
-    for i in range(N):
-        for j in range(M):
-            if arr[i][j] == 1 and visited[i][j] == 0:
-                DFS(i, j)
+    for r in range(N):
+        for c in range(M):
+            if arr[r][c] == 1 and visited[r][c] == 0:
+                DFS(r, c)
                 cnt += 1
     print(cnt)
