@@ -7,6 +7,7 @@ sys.stdin = open('input.txt', 'r')
 # lst = [1, 2, 3, 4]
 # N = len(lst)
 # S = []
+# # 반복구조
 # for i in range(N):
 #     S.append(lst[i])
 #     for j in range(i+1, N): # 이 부분이 반복
