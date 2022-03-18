@@ -10,6 +10,7 @@ def comb(r, start, M):
         for s in S:
             lst.remove(s)
         order.append(lst)
+        # print(order)
         A_lst = order[0]; B_lst = order[1]
         A_total = B_total = 0
         for i in range(M-1):
@@ -28,6 +29,8 @@ def comb(r, start, M):
             comb(r + 1, i + 1, M)
             S.pop()
 
+
+
 T = int(input())
 for test_case in range(1, T+1):
     N = int(input())
@@ -38,3 +41,16 @@ for test_case in range(1, T+1):
     M = N // 2
     comb(0, 0, M)
     print(f'#{test_case} {min_val}')
+
+# lst = [0, 1, 2]
+# M = 3
+# for i in range(M - 1):
+#     for j in range(i + 1, M):
+#         print(i, j)
+
+def print_hello():
+    comt()
+
+def comt():
+    print("hello")
+print_hello()
