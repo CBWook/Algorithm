@@ -27,7 +27,6 @@ for test_case in range(1, T + 1):
             if 6 <= arr[i][j] <= 10:
                 wormhole[arr[i][j]].append((i, j))
 
-    # print(wormhole)
     max_cnt = 0
     for i in range(N):
         for j in range(N):
@@ -38,35 +37,34 @@ for test_case in range(1, T + 1):
                     d = k
                     cnt = 0
                     while True:
-                        if 1 <= arr[nr][nc] <= 5:
+                        # 벽
+                        if 0 > nr or nr >= N or 0 > nc or nc >= N:
+                            d = op_d[d]
+                            nr += dr[d]; nc += dc[d]
+                            cnt += 1
+                        # 블록
+                        elif 1 <= arr[nr][nc] <= 5:
                             d = block_d[arr[nr][nc]][d]
                             nr += dr[d]; nc += dc[d]
                             cnt += 1
-
-                            if nr < 0 or nr >= N or nc < 0 or nc >= N:  # 범위 밖(벽)
-                                d = op_d[k]
-                                nr += dr[d]
-                                nc += dc[d]
-                                cnt += 1
-
+                        # 웜홀
                         elif 6 <= arr[nr][nc] <= 10:
-                            for hole in wormhole[arr[nr][nc]]:
-                                if nr != hole[0] or nc != hole[1]:
-                                    nr = hole[0]; nc = hole[1]
-
+                            if wormhole[arr[nr][nc]][0] == (nr, nc):
+                                nr, nc = wormhole[arr[nr][nc]][1]
+                            else:
+                                nr, nc = wormhole[arr[nr][nc]][0]
+                            nr += dr[d]; nc += dc[d]
+                        # 통행가능
                         elif arr[nr][nc] == 0:
                             nr += dr[d]; nc += dc[d]
 
-                            if nr < 0 or nr >= N or nc < 0 or nc >= N:  # 범위 밖(벽)
-                                d = op_d[k]
-                                nr += dr[d]
-                                nc += dc[d]
-                                cnt += 1
+                        elif arr[nr][nc] == -1:
+                            break
 
                         if nr == sr and nc == sc:
                             break
-                        if arr[nr][nc] == -1:
-                            break
+
                     if max_cnt < cnt:
                         max_cnt = cnt
-    print(max_cnt)
+
+    print(f'#{test_case} {max_cnt}')
