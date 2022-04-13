@@ -112,13 +112,11 @@ for test_case in range(1, T + 1):
                         # 벽
                         if 0 > nr or nr >= N or 0 > nc or nc >= N:
                             d = op_d[d]
-                            nr += dr[d]; nc += dc[d]
                             cnt += 1
 
                         # 블록
                         elif 1 <= arr[nr][nc] <= 5:
                             d = block_d[arr[nr][nc]][d]
-                            nr += dr[d]; nc += dc[d]
                             cnt += 1
 
                         # 웜홀
@@ -127,13 +125,10 @@ for test_case in range(1, T + 1):
                                 nr, nc = wormhole[arr[nr][nc]][1]
                             else:
                                 nr, nc = wormhole[arr[nr][nc]][0]
-                            nr += dr[d]; nc += dc[d]
-                        # 통행가능
-                        elif arr[nr][nc] == 0:
-                            nr += dr[d]; nc += dc[d]
-
                         elif arr[nr][nc] == -1:
                             break
+                        # 통행가능
+                        nr += dr[d]; nc += dc[d]
 
                         if nr == sr and nc == sc:
                             break
