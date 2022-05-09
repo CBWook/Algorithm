@@ -4,13 +4,14 @@ sys.stdin = open('input.txt', 'r')
 from collections import deque
 
 def BFS(r, c):
-    global sr, sc, size, t, nr, nc
+    global t, pos, size, sr, sc, cnt
+    # print('sr, sc', r, c)
     visited = [[0] * N for _ in range(N)]
     Q = deque()
     Q.append((r, c))
 
     visited[r][c] = 1
-    cnt = 0
+
     while Q:
         r, c = Q.popleft()
 
@@ -31,8 +32,9 @@ def BFS(r, c):
                 elif arr[nr][nc] < size: # 사이즈보다 작은 물고기
                     cnt += 1
                     arr[nr][nc] = 0
-                    if cnt == size:
-                        return nr, nc, visited[r][c]
+                    t += visited[r][c]
+                    sr, sc = nr, nc
+                    return
 
 
 N = int(input())
@@ -51,18 +53,22 @@ for i in range(N):
     if flag:
         break
 
-dr = [-1, 0, 1, 0]
-dc = [0, -1, 0, 1]
+dr = [-1, 0, 0, 1]
+dc = [0, -1, 1, 0]
 
-size = 2; t = 0
+size = 2; t = 0; cnt = 0
 
 while True:
-    tmp = size
-    time = 0
-    sr, sc, time = BFS(sr, sc)
-    size += 1
-    t += time
-
+    tmp_sr, tmp_sc = sr, sc
+    BFS(sr, sc)
+    if cnt == size:
+        size += 1
+        cnt = 0
+    print('size', size)
+    print('cnt', cnt)
+    print('t', t)
+    if tmp_sr == sr and tmp_sc == sc:
+        break
     # print('array')
     # for iii in range(N):
     #     for jjj in range(N):
@@ -73,7 +79,5 @@ while True:
     # print('size:', size)
     # print('t:', t)
 
-    if tmp == size:
-        break
 
 print(t)
